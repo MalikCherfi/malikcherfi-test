@@ -1,4 +1,4 @@
-import Container from "../components/styled-components/Container";
+import Container from "../components/styled-components/Container.js";
 
 const Home = () => {
   return <Container>Home</Container>;

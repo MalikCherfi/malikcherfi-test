@@ -1,13 +1,18 @@
-import Container from "../../components/styled-components/Container";
+import Container from "../../components/styled-components/Container.js";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import loginUsers from "../../data/loginUsers.js";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
 
+  const onSubmit = (payload) => {
+    loginUsers(payload);
+  };
+
   return (
     <Container>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label>
           Adresse mail :
           <input
