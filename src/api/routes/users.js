@@ -54,8 +54,13 @@ userRouter.get("/users", async (req, res, next) => {
   await jwt
     .verifyAccessToken(token)
     .then(() => {
-      const user = User.find({});
-      res.json(user);
+      User.find({})
+        .then((user) => {
+          res.json(user);
+        })
+        .catch(() => {
+          res.status(404).send("Error retrieving users");
+        });
     })
     .catch((e) => {
       next(console.log(e.message));
