@@ -4,14 +4,18 @@ export const userSlice = createSlice({
   name: "user",
   initialState: {
     isConnected: false,
+    users: [],
   },
   reducers: {
-    setUser: (state, status) => {
+    setStatus: (state, status) => {
       state.isConnected = status.payload;
+    },
+    setUsers: (state, status) => {
+      state.users = status.payload;
     },
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setStatus, setUsers } = userSlice.actions;
 
 export default userSlice.reducer;

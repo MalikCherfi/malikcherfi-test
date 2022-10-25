@@ -1,8 +1,8 @@
 import axios from "../helpers/axios.config.js";
 
-const checkUsersAuth = async (token, dispatch, setUser) => {
+const checkUsersAuth = async (token, dispatch, setStatus) => {
   const response = await axios
-    .get("/users", {
+    .get("/session/user", {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -10,7 +10,7 @@ const checkUsersAuth = async (token, dispatch, setUser) => {
     .catch((err) => console.log(err));
 
   if (response) {
-    dispatch(setUser(true));
+    dispatch(setStatus(true));
   }
 };
 

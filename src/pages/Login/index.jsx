@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import loginUsers from "../../data/loginUsers.js";
-import { setUser } from "../../app/states/user.js";
+import { setStatus } from "../../app/states/user.js";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
@@ -13,7 +13,7 @@ const Login = () => {
   const connexionStatus = useSelector((state) => state.user.isConnected);
 
   const onSubmit = (payload) => {
-    loginUsers(payload, dispatch, setUser);
+    loginUsers(payload, dispatch, setStatus);
   };
 
   return (

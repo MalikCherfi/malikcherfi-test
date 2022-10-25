@@ -1,12 +1,12 @@
 import axios from "../helpers/axios.config.js";
 
-const postUsers = async (payload) => {
+const getUsers = async (dispatch, setUsers) => {
   await axios
-    .post("/register", payload)
+    .get("/users")
     .then((res) => {
-      console.log(res);
+      dispatch(setUsers(res.data));
     })
     .catch((err) => console.log(err));
 };
 
-export default postUsers;
+export default getUsers;

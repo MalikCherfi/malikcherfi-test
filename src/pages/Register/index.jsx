@@ -1,12 +1,12 @@
 import Container from "../../components/styled-components/Container.js";
 import { useForm } from "react-hook-form";
-import postUsers from "../../data/postUsers.js";
+import registerUsers from "../../data/registerUsers.js";
 
 const Register = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (payload) => {
-    postUsers(payload);
+    registerUsers(payload);
   };
 
   return (

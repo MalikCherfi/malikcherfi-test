@@ -42,7 +42,7 @@ userRouter.post("/login", async (req, res) => {
   }
 });
 
-userRouter.get("/users", async (req, res, next) => {
+userRouter.get("/session/user", async (req, res, next) => {
   if (!req.headers.authorization) {
     return console.log("Access token is required");
   }
@@ -59,12 +59,22 @@ userRouter.get("/users", async (req, res, next) => {
           res.json(user);
         })
         .catch(() => {
-          res.status(404).send("Error retrieving users");
+          res.status(404).send("Error retrieving user");
         });
     })
     .catch((e) => {
       next(console.log(e.message));
     });
+});
+
+userRouter.get("/users", async (req, res) => {
+  const users = await User.find({});
+
+  try {
+    res.status(200).send(users);
+  } catch {
+    res.status(404).send("Users not found");
+  }
 });
 
 export { userRouter };

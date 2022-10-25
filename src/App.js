@@ -1,7 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setUser } from "./app/states/user.js";
+import { setStatus } from "./app/states/user.js";
+import { setUsers } from "./app/states/user.js";
+// DATA
+import getUsers from "./data/getUsers.js";
 // AUTH
 import checkUsersAuth from "./data/checkUsersAuth.js";
 // LAYOUTS
@@ -20,9 +23,13 @@ const App = () => {
   useEffect(() => {
     const token = localStorage.getItem("auth_token");
     if (token !== "false") {
-      checkUsersAuth(token, dispatch, setUser);
+      checkUsersAuth(token, dispatch, setStatus);
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    getUsers(dispatch, setUsers);
+  }, []);
 
   return (
     <>

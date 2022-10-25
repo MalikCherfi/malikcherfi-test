@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setUser } from "../app/states/user.js";
+import { setStatus } from "../app/states/user.js";
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const Navigation = () => {
 
   const deleteToken = () => {
     localStorage.setItem("auth_token", false);
-    dispatch(setUser(false));
+    dispatch(setStatus(false));
   };
 
   return (
