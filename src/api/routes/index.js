@@ -1,9 +1,7 @@
-const usersRouter = require("./users");
+import { userRouter }  from "./users.js";
 
 const setupRoutes = (app) => {
-  app.use("/", usersRouter);
+  app.use("/", userRouter);
 };
 
-module.exports = {
-  setupRoutes,
-};
+export { setupRoutes };
