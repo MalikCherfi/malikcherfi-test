@@ -1,7 +1,19 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setUser } from "../app/states/user.js";
 
 const Navigation = () => {
+  const dispatch = useDispatch();
+
+  const connexionStatus = useSelector((state) => state.user.isConnected);
+
+  const deleteToken = () => {
+    localStorage.setItem("auth_token", false);
+    dispatch(setUser(false));
+  };
+
   return (
     <>
       <Nav id="nav-bar">
@@ -11,11 +23,25 @@ const Navigation = () => {
               Home
             </Link>
           </li>
-          <li>
-            <Link to="login" style={{ textDecoration: "none", color: "white" }}>
-              Se connecter
-            </Link>
-          </li>
+          {!connexionStatus ? (
+            <li>
+              <Link
+                to="login"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Se connecter
+              </Link>
+            </li>
+          ) : (
+            <a
+              style={{ cursor: "pointer", color: "white" }}
+              onClick={deleteToken}
+            >
+              <li>
+                Se déconnecter
+              </li>
+            </a>
+          )}
         </ul>
       </Nav>
     </>
