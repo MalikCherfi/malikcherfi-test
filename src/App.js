@@ -31,7 +31,7 @@ const App = () => {
     
     // Get users
     getUsers(dispatch, setUsers);
-  }, [dispatch]);
+  }, []);
 
   // Change background color
   window.addEventListener("click", () => {
