@@ -1,10 +1,10 @@
 import axios from "../helpers/axios.config.js";
 
-const registerUsers = async (payload) => {
+const registerUsers = async (payload, toast) => {
   await axios
     .post("/register", payload)
-    .then((res) => {
-      console.log(res);
+    .then(() => {
+      toast.success("Inscription réussi, veuillez vous connecter");
     })
     .catch((err) => console.log(err));
 };

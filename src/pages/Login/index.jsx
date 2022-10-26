@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import loginUsers from "../../data/loginUsers.js";
 import { setStatus } from "../../app/states/user.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
@@ -14,7 +16,7 @@ const Login = () => {
   const connexionStatus = useSelector((state) => state.user.isConnected);
 
   const onSubmit = (payload) => {
-    loginUsers(payload, dispatch, setStatus);
+    loginUsers(payload, dispatch, setStatus, toast);
   };
 
   return (
@@ -25,6 +27,18 @@ const Login = () => {
           handleSubmit={handleSubmit}
           onSubmit={onSubmit}
           register={register}
+        />
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
         />
       </Container>
       {connexionStatus && <Navigate replace to="/" />}

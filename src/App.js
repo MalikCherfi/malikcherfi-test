@@ -24,9 +24,7 @@ const App = () => {
   // Check token and connect user if there is token
   useEffect(() => {
     const token = localStorage.getItem("auth_token");
-    if (token !== "false") {
-      checkUsersAuth(token, dispatch, setStatus, setIsLoading);
-    }
+    checkUsersAuth(token, dispatch, setStatus, setIsLoading);
   }, [dispatch]);
 
   // Get users
