@@ -8,6 +8,7 @@ const Navigation = () => {
   const dispatch = useDispatch();
 
   const connexionStatus = useSelector((state) => state.user.isConnected);
+  const isLoading = useSelector((state) => state.user.isLoading);
 
   // Disconnect User
   const deleteToken = () => {
@@ -24,7 +25,7 @@ const Navigation = () => {
               Home
             </Link>
           </li>
-          {!connexionStatus ? (
+          {!isLoading && !connexionStatus ? (
             <li>
               <Link
                 to="login"
@@ -38,9 +39,7 @@ const Navigation = () => {
               style={{ cursor: "pointer", color: "white" }}
               onClick={deleteToken}
             >
-              <li>
-                Se déconnecter
-              </li>
+              <li>Se déconnecter</li>
             </a>
           )}
         </ul>
