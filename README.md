@@ -11,9 +11,10 @@ Variable d'environement :
 
 ### `npm start`
 
-### `npm run api`
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-Runs server app on port : http://localhost:8000
+### `npm run api`
+Server app run on port : http://localhost:8000
 
 ## Available Scripts
 
