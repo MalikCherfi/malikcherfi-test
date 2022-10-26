@@ -9,9 +9,10 @@ const checkUsersAuth = async (token, dispatch, setStatus, setIsLoading) => {
     })
     .then(() => {
       dispatch(setStatus(true));
-      dispatch(setIsLoading(false));
     })
     .catch((err) => console.log(err));
+
+  dispatch(setIsLoading(false));
 };
 
 export default checkUsersAuth;
