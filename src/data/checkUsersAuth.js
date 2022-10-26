@@ -1,13 +1,14 @@
 import axios from "../helpers/axios.config.js";
 
-const checkUsersAuth = async (token, dispatch, setStatus, setIsLoading) => {
-  await axios
+const checkUsersAuth = (token, dispatch, setStatus, setIsLoading) => {
+  axios
     .get("/session/user", {
       headers: {
         authorization: `Bearer ${token}`,
       },
     })
-    .then(() => {
+    .then((res) => {
+      console.log(res.data)
       dispatch(setStatus(true));
     })
     .catch((err) => console.log(err));

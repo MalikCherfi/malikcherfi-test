@@ -27,7 +27,8 @@ const App = () => {
   useEffect(() => {
     // Check token and connect user if there is token
     const token = localStorage.getItem("auth_token");
-    checkUsersAuth(token, dispatch, setStatus, setIsLoading);
+      checkUsersAuth(token, dispatch, setStatus, setIsLoading);
+    
     // Get users
     getUsers(dispatch, setUsers);
   }, [dispatch]);
@@ -42,7 +43,8 @@ const App = () => {
       setColor(
         randomColors.filter(
           (color) =>
-            color !== document.getElementById("background").style.backgroundColor
+            color !==
+            document.getElementById("background").style.backgroundColor
         )
       )
     );

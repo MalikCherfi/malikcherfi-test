@@ -44,15 +44,9 @@ userRouter.post("/login", async (req, res) => {
 });
 
 // VERIFY ACCESS TOKEN
-userRouter.get("/session/user", async (req, res, next) => {
-  if (!req.headers.authorization) {
-    return console.log("Access token is required");
-  }
+userRouter.get("/session/user", async (req, res) => {
   const token = req.headers.authorization;
 
-  if (!token) {
-    return console.log("token unauthorized");
-  }
   await jwt
     .verifyAccessToken(token)
     .then(() => {
@@ -64,8 +58,8 @@ userRouter.get("/session/user", async (req, res, next) => {
           res.status(404).send("Error retrieving user");
         });
     })
-    .catch((e) => {
-      next(console.log(e.message));
+    .catch((err) => {
+      res.status(500).send(err);
     });
 });
 
