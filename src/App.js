@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-// utils
+// UTILS
 import randomColors from "./utils/color.js";
 // STORE
 import { setStatus } from "./app/states/user.js";

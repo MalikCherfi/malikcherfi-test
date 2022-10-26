@@ -15,9 +15,9 @@ userRouter.post("/register", async (req, res) => {
 
   try {
     await User.create({ ...req.body });
-    res.status(201).send("Utilisateur ajouté");
+    res.status(201).send("User created");
   } catch {
-    res.status(500).send("Utilisateur non ajouté");
+    res.status(500).send("User not added");
   }
 });
 

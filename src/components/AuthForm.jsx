@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 
 const AuthForm = ({ handleSubmit, onSubmit, register }) => {
+  // Check if it's regiter form or login form
   const registerForm = document.location.href.includes("register");
   let buttonTitle = "";
   if (document.location.href.includes("register")) {
