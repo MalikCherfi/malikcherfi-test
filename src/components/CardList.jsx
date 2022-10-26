@@ -1,15 +1,16 @@
 import UserCard from "./UserCard.jsx";
+import { useSelector } from "react-redux";
 
 const CardList = ({ users }) => {
-  const CardColors = ["#003844", "#006C67", "#F194B4", "#FFB100", "#CA3C25", "#7FB069", "#F0386B"];
+  const color = useSelector((state) => state.color.color);
 
   return (
     <>
       {users.map((user, index) => (
         <UserCard
-          color={CardColors[Math.floor(Math.random() * CardColors.length)]}
+          color={color[Math.floor(Math.random() * color.length)]}
           name={user.name}
-          lastname={user.lastname}
+          lastname={user.lastName}
           email={user.email}
           key={index}
         />

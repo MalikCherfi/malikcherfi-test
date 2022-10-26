@@ -14,6 +14,7 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const connexionStatus = useSelector((state) => state.user.isConnected);
+  const color = useSelector((state) => state.color.color);
 
   const onSubmit = (payload) => {
     loginUsers(payload, dispatch, setStatus, toast);
@@ -22,7 +23,7 @@ const Login = () => {
   return (
     <>
       <Container>
-        <h1>Se connecter</h1>
+        <h1 style={{ color: color }}>Se connecter</h1>
         <AuthForm
           handleSubmit={handleSubmit}
           onSubmit={onSubmit}

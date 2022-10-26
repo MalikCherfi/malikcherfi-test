@@ -2,6 +2,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const AuthForm = ({ handleSubmit, onSubmit, register }) => {
   const registerForm = document.location.href.includes("register");
@@ -12,13 +13,15 @@ const AuthForm = ({ handleSubmit, onSubmit, register }) => {
     buttonTitle = "Se connecter";
   }
 
+  const color = useSelector((state) => state.color.color);
+
   return (
     <FormContainer>
       <Form onSubmit={handleSubmit(onSubmit)}>
         {registerForm && (
           <>
             <Form.Group className="mb-3" controlId="formBasicName">
-              <Form.Label>Prénom</Form.Label>
+              <Form.Label style={{ color: color }}>Prénom</Form.Label>
               <Form.Control
                 name="name"
                 type="text"
@@ -27,7 +30,7 @@ const AuthForm = ({ handleSubmit, onSubmit, register }) => {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicLastName">
-              <Form.Label>Prénom</Form.Label>
+              <Form.Label style={{ color: color }}>Nom</Form.Label>
               <Form.Control
                 name="lastName"
                 type="text"
@@ -38,7 +41,7 @@ const AuthForm = ({ handleSubmit, onSubmit, register }) => {
           </>
         )}
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Adresse email</Form.Label>
+          <Form.Label style={{ color: color }}>Adresse email</Form.Label>
           <Form.Control
             name="email"
             type="email"
@@ -48,7 +51,7 @@ const AuthForm = ({ handleSubmit, onSubmit, register }) => {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Mot de passe</Form.Label>
+          <Form.Label style={{ color: color }}>Mot de passe</Form.Label>
           <Form.Control
             name="password"
             type="password"
@@ -57,13 +60,19 @@ const AuthForm = ({ handleSubmit, onSubmit, register }) => {
           />
         </Form.Group>
         <DivCenter>
-          <Button variant="primary" type="submit">
+          <Button style={{ backgroundColor: color }} type="submit">
             {buttonTitle}
           </Button>
         </DivCenter>
         {!registerForm && (
           <DivCenter>
-            <p style={{ marginTop: "20px", overflowWrap: "break-word" }}>
+            <p
+              style={{
+                marginTop: "20px",
+                overflowWrap: "break-word",
+                color: color,
+              }}
+            >
               Vous n'etes pas encore inscrit ?
             </p>
             <p>

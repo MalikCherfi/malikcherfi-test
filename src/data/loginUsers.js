@@ -7,10 +7,7 @@ const loginUsers = async (payload, dispatch, setStatus, toast) => {
       localStorage.setItem("auth_token", res.data);
       dispatch(setStatus(true));
     })
-    .catch(
-      (err) => console.log(err),
-      toast.error("Email ou mot de passe incorrect")
-    );
+    .catch(toast.error("Email ou mot de passe incorrect"));
 };
 
 export default loginUsers;
