@@ -27,6 +27,7 @@ const App = () => {
     }
   }, [dispatch]);
 
+  // Get users
   useEffect(() => {
     getUsers(dispatch, setUsers);
   }, []);

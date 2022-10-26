@@ -9,6 +9,7 @@ const Navigation = () => {
 
   const connexionStatus = useSelector((state) => state.user.isConnected);
 
+  // Disconnect User
   const deleteToken = () => {
     localStorage.setItem("auth_token", false);
     dispatch(setStatus(false));

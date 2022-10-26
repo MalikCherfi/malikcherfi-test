@@ -5,11 +5,11 @@ import mongoose from "mongoose";
 import User from "../models/User.js";
 
 const userRouter = express.Router();
+const databaseUrl = process.env.DATABASE_URL;
 
-mongoose.connect(
-  "mongodb+srv://malikcherfi:B%40n%40ne31770@db-portfolio.3pieenj.mongodb.net/database-test?retryWrites=true&w=majority"
-);
+mongoose.connect(databaseUrl);
 
+// REGISTER USER
 userRouter.post("/register", async (req, res) => {
   req.body.password = bcrypt.hashSync(req.body.password, 8);
 
@@ -21,6 +21,7 @@ userRouter.post("/register", async (req, res) => {
   }
 });
 
+// LOGIN USER
 userRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -42,6 +43,7 @@ userRouter.post("/login", async (req, res) => {
   }
 });
 
+// VERIFY ACCESS TOKEN
 userRouter.get("/session/user", async (req, res, next) => {
   if (!req.headers.authorization) {
     return console.log("Access token is required");
@@ -67,6 +69,7 @@ userRouter.get("/session/user", async (req, res, next) => {
     });
 });
 
+// GET USERS
 userRouter.get("/users", async (req, res) => {
   const users = await User.find({});
 
