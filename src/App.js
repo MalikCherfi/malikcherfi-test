@@ -1,10 +1,13 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+// utils
+import randomColors from "./utils/color.js";
 // STORE
 import { setStatus } from "./app/states/user.js";
 import { setIsLoading } from "./app/states/user.js";
 import { setUsers } from "./app/states/user.js";
+import { setColor } from "./app/states/color.js";
 // DATA
 import getUsers from "./data/getUsers.js";
 // AUTH
@@ -21,22 +24,35 @@ import Background from "./components/styled-components/Background.js";
 const App = () => {
   const dispatch = useDispatch();
 
-  // Check token and connect user if there is token
   useEffect(() => {
+    // Check token and connect user if there is token
     const token = localStorage.getItem("auth_token");
     checkUsersAuth(token, dispatch, setStatus, setIsLoading);
-  }, [dispatch]);
-
-  // Get users
-  useEffect(() => {
+    // Get users
     getUsers(dispatch, setUsers);
   }, [dispatch]);
+
+  // Change background color
+  window.addEventListener("click", () => {
+    document.getElementById("background").style.backgroundColor =
+      randomColors[Math.floor(Math.random() * randomColors.length)];
+
+    // Change text color
+    dispatch(
+      setColor(
+        randomColors.filter(
+          (color) =>
+            color !== document.getElementById("background").style.backgroundColor
+        )
+      )
+    );
+  });
 
   return (
     <>
       <Navigation />
 
-      <Background>
+      <Background id="background">
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
