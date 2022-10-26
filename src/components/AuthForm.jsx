@@ -15,6 +15,28 @@ const AuthForm = ({ handleSubmit, onSubmit, register }) => {
   return (
     <FormContainer>
       <Form onSubmit={handleSubmit(onSubmit)}>
+        {registerForm && (
+          <>
+            <Form.Group className="mb-3" controlId="formBasicName">
+              <Form.Label>Prénom</Form.Label>
+              <Form.Control
+                name="name"
+                type="text"
+                placeholder="Prénom"
+                {...register("name", { required: true })}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicLastName">
+              <Form.Label>Prénom</Form.Label>
+              <Form.Control
+                name="lastName"
+                type="text"
+                placeholder="Nom"
+                {...register("lastName", { required: true })}
+              />
+            </Form.Group>
+          </>
+        )}
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Adresse email</Form.Label>
           <Form.Control
