@@ -1,6 +1,6 @@
 import axios from "../helpers/axios.config.js";
 
-const checkUsersAuth = async (token, dispatch, setStatus) => {
+const checkUsersAuth = async (token, dispatch, setStatus, setIsLoading) => {
   const response = await axios
     .get("/session/user", {
       headers: {
@@ -11,6 +11,7 @@ const checkUsersAuth = async (token, dispatch, setStatus) => {
 
   if (response) {
     dispatch(setStatus(true));
+    dispatch(setIsLoading(false));
   }
 };
 

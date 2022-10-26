@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
 const Background = styled.div`
-  background: url("https://mdbootstrap.com/img/Photos/Others/img (40).webp")
-    no-repeat center center;
-  background-size: cover;
+  background-color: #FFCA3A;
   min-height: 100vh;
 
   img {
