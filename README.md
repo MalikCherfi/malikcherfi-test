@@ -1,6 +1,19 @@
-# Getting Started with Create React App
+## Launch Project with
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### `npm install`
+
+### `ajouter .env`
+
+Variable d'environement :
+
+- DATABASE_URL ( mongoDb Atlas Url )
+- ACCESS_TOKEN_SECRET ( mot de passe aléatoire pour créer les tokens )
+
+### `npm start`
+
+### `npm run api`
+
+Runs server app on port : http://localhost:8000
 
 ## Available Scripts
 
@@ -13,6 +26,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+### `npm run api`
+
+Runs server app on port : http://localhost:8000
 
 ### `npm test`
 
