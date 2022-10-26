@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 
 const userSchema = new Schema({
+  name: String,
+  lastName: String,
   email: String,
   password: String,
 });
