@@ -27,16 +27,20 @@ const App = () => {
   useEffect(() => {
     // Check token and connect user if there is token
     const token = localStorage.getItem("auth_token");
-      checkUsersAuth(token, dispatch, setStatus, setIsLoading);
-    
+    checkUsersAuth(token, dispatch, setStatus, setIsLoading);
+
     // Get users
     getUsers(dispatch, setUsers);
   }, []);
 
   // Change background color
   window.addEventListener("click", () => {
-    document.getElementById("background").style.backgroundColor =
-      randomColors[Math.floor(Math.random() * randomColors.length)];
+    document.getElementById("background").style.backgroundColor ==
+    randomColors[0]
+      ? (document.getElementById("background").style.backgroundColor =
+          randomColors[1])
+      : (document.getElementById("background").style.backgroundColor =
+          randomColors[0]);
 
     // Change text color
     dispatch(
