@@ -1,4 +1,5 @@
 import Container from "../../components/styled-components/Container.js";
+import AuthForm from "../../components/AuthForm.jsx";
 import { useForm } from "react-hook-form";
 import registerUsers from "../../data/registerUsers.js";
 
@@ -11,27 +12,12 @@ const Register = () => {
 
   return (
     <Container>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>
-          Adresse mail :
-          <input
-            type="text"
-            name="email"
-            placeholder="Email"
-            {...register("email", { required: true })}
-          />
-        </label>
-        <label>
-          Mot de passe :
-          <input
-            type="text"
-            name="password"
-            placeholder="Mot de passe"
-            {...register("password", { required: true })}
-          />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <h1>Créer un compte</h1>
+      <AuthForm
+        handleSubmit={handleSubmit}
+        onSubmit={onSubmit}
+        register={register}
+      />
     </Container>
   );
 };
