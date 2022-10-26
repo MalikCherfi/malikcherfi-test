@@ -14,7 +14,7 @@ const Home = () => {
       {!isLoading && (
         <Container row>
           {!connexionStatus ? (
-            <h1 style={{ color: color }}>
+            <h1 style={{ color: color, textAlign: "center" }}>
               Vous devez vous connecter pour accéder à la liste des utilisateurs
             </h1>
           ) : (

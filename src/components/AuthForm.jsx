@@ -71,6 +71,7 @@ const AuthForm = ({ handleSubmit, onSubmit, register }) => {
               style={{
                 marginTop: "20px",
                 overflowWrap: "break-word",
+                textAlign: "center",
                 color: color,
               }}
             >
@@ -94,6 +95,9 @@ const AuthForm = ({ handleSubmit, onSubmit, register }) => {
 const FormContainer = styled.div`
   width: 25%;
   height: 400px;
+  @media (max-width: 600px) {
+    width: 95%;
+  }
 `;
 
 const DivCenter = styled.div`
