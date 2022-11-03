@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 // UTILS
 import randomColors from "./utils/color.js";
 // STORE
-import { setStatus } from "./app/states/user.js";
-import { setIsLoading } from "./app/states/user.js";
-import { setUsers } from "./app/states/user.js";
-import { setColor } from "./app/states/color.js";
+import { setStatus } from "./app/states/user.ts";
+import { setIsLoading } from "./app/states/user.ts";
+import { setUsers } from "./app/states/user.ts";
+import { setColor } from "./app/states/color.ts";
 // DATA
 import getUsers from "./data/getUsers.js";
 // AUTH
@@ -15,7 +15,7 @@ import checkUsersAuth from "./data/checkUsersAuth.js";
 // LAYOUTS
 import Navigation from "./layouts/Navigation.jsx";
 // PAGES
-import Home from "./pages/Home.jsx";
+import Home from "./pages/Home.tsx";
 import Login from "./pages/Login/index.jsx";
 import Register from "./pages/Register/index.jsx";
 // COMPONENTS

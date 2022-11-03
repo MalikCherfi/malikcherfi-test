@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+type Props = {
+  row: string,
+}
+
+const Container = styled.div<Props>`
   padding-top: 90px;
   min-height: 100vh;
   display: flex;

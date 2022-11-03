@@ -1,4 +1,13 @@
-const UserCard = ({ name, lastname, email, color }) => {
+import React from 'react'
+
+type Props = {
+  name: string,
+  lastname: string,
+  email: string,
+  color: string,
+}
+
+const UserCard = ({ name, lastname, email, color }: Props) => {
   return (
     <div style={{ width: "18rem", height: "100px" }}>
       <h1 style={{ color: color, textAlign: "center" }}>

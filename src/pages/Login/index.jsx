@@ -1,11 +1,11 @@
-import Container from "../../components/styled-components/Container.js";
+import Container from "../../components/styled-components/Container";
 import AuthForm from "../../components/AuthForm.jsx";
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import loginUsers from "../../data/loginUsers.js";
-import { setStatus } from "../../app/states/user.js";
+import { setStatus } from "../../app/states/user.ts";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

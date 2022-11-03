@@ -1,4 +1,4 @@
-import Container from "../../components/styled-components/Container.js";
+import Container from "../../components/styled-components/Container";
 import AuthForm from "../../components/AuthForm.jsx";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";

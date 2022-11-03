@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setStatus } from "../app/states/user.js";
+import { setStatus } from "../app/states/user.ts";
 
 const Navigation = () => {
   const dispatch = useDispatch();
