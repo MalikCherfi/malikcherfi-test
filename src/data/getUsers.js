@@ -1,4 +1,4 @@
-import axios from "../helpers/axios.config.js";
+import axios from "../helpers/axios.config.ts";
 
 const getUsers = async (dispatch, setUsers) => {
   await axios

@@ -1,4 +1,4 @@
-import axios from "../helpers/axios.config.js";
+import axios from "../helpers/axios.config.ts";
 
 const checkUsersAuth = (token, dispatch, setStatus, setIsLoading) => {
   axios

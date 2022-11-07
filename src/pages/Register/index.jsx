@@ -1,5 +1,5 @@
 import Container from "../../components/styled-components/Container";
-import AuthForm from "../../components/AuthForm.jsx";
+import AuthForm from "../../components/AuthForm";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import registerUsers from "../../data/registerUsers.js";

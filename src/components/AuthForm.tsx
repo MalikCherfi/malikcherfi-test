@@ -1,11 +1,23 @@
+import React from "react";
+import { useForm } from "react-hook-form";
+import { useAppSelector, useAppDispatch } from "../app/hooks";
+import { setStatus } from "../app/states/user";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import loginUsers from "../data/loginUsers";
 
-const AuthForm = ({ handleSubmit, onSubmit, register }) => {
-  // Check if it's regiter form or login form
+type Data = {
+  name: string;
+  lastName: string;
+  email: string;
+  password: string;
+};
+
+const AuthForm = () => {
+  // Check if it's register form or login form
   const registerForm = document.location.href.includes("register");
   let buttonTitle = "";
   if (document.location.href.includes("register")) {
@@ -14,7 +26,18 @@ const AuthForm = ({ handleSubmit, onSubmit, register }) => {
     buttonTitle = "Se connecter";
   }
 
-  const color = useSelector((state) => state.color.color);
+  const color = useAppSelector((state) => state.color.color);
+  const dispatch = useAppDispatch();
+  const { register, handleSubmit } = useForm<Data>();
+
+  const onSubmit = (data: object) => {
+    loginUsers({
+      data,
+      dispatch,
+      setStatus,
+      toast: toast.error,
+    });
+  };
 
   return (
     <FormContainer>
@@ -24,7 +47,6 @@ const AuthForm = ({ handleSubmit, onSubmit, register }) => {
             <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label style={{ color: color }}>Prénom</Form.Label>
               <Form.Control
-                name="name"
                 type="text"
                 placeholder="Prénom"
                 {...register("name", { required: true })}
@@ -33,7 +55,6 @@ const AuthForm = ({ handleSubmit, onSubmit, register }) => {
             <Form.Group className="mb-3" controlId="formBasicLastName">
               <Form.Label style={{ color: color }}>Nom</Form.Label>
               <Form.Control
-                name="lastName"
                 type="text"
                 placeholder="Nom"
                 {...register("lastName", { required: true })}
@@ -44,7 +65,6 @@ const AuthForm = ({ handleSubmit, onSubmit, register }) => {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label style={{ color: color }}>Adresse email</Form.Label>
           <Form.Control
-            name="email"
             type="email"
             placeholder="Email"
             {...register("email", { required: true })}
@@ -54,7 +74,6 @@ const AuthForm = ({ handleSubmit, onSubmit, register }) => {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label style={{ color: color }}>Mot de passe</Form.Label>
           <Form.Control
-            name="password"
             type="password"
             placeholder="Mot de passe"
             {...register("password", { required: true })}

@@ -16,7 +16,7 @@ import checkUsersAuth from "./data/checkUsersAuth.js";
 import Navigation from "./layouts/Navigation.jsx";
 // PAGES
 import Home from "./pages/Home.tsx";
-import Login from "./pages/Login/index.jsx";
+import Login from "./pages/Login/index.tsx";
 import Register from "./pages/Register/index.jsx";
 // COMPONENTS
 import Background from "./components/styled-components/Background.js";
@@ -35,7 +35,7 @@ const App = () => {
 
   // Change background color
   window.addEventListener("click", () => {
-    document.getElementById("background").style.backgroundColor ==
+    document.getElementById("background").style.backgroundColor ===
     randomColors[0]
       ? (document.getElementById("background").style.backgroundColor =
           randomColors[1])

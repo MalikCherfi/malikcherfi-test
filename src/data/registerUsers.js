@@ -1,4 +1,4 @@
-import axios from "../helpers/axios.config.js";
+import axios from "../helpers/axios.config.ts";
 
 const registerUsers = async (payload, toast) => {
   await axios
