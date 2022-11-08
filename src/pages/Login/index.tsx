@@ -12,7 +12,7 @@ const Login = () => {
 
   return (
     <>
-      <Container row="row">
+      <Container justifyContent="space-evenly" flexDirection="column">
         <h1 style={{ color: color }}>Se connecter</h1>
         <AuthForm />
         <ToastContainer

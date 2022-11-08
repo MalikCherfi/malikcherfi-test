@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import loginUsers from "../data/loginUsers";
+import registerUsers from "../data/registerUsers";
 
 type Data = {
   name: string;
@@ -20,7 +21,7 @@ const AuthForm = () => {
   // Check if it's register form or login form
   const registerForm = document.location.href.includes("register");
   let buttonTitle = "";
-  if (document.location.href.includes("register")) {
+  if (registerForm) {
     buttonTitle = "S'inscrire";
   } else {
     buttonTitle = "Se connecter";
@@ -31,12 +32,16 @@ const AuthForm = () => {
   const { register, handleSubmit } = useForm<Data>();
 
   const onSubmit = (data: object) => {
-    loginUsers({
-      data,
-      dispatch,
-      setStatus,
-      toast: toast.error,
-    });
+    if (registerForm) {
+      registerUsers({ data, toastSuccess: toast.success });
+    } else {
+      loginUsers({
+        data,
+        dispatch,
+        setStatus,
+        toastError: toast.error,
+      });
+    }
   };
 
   return (

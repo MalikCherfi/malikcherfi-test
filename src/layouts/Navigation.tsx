@@ -1,17 +1,18 @@
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { setStatus } from "../app/states/user.ts";
+import { useAppSelector, useAppDispatch } from "../app/hooks";
+import { setStatus } from "../app/states/user";
 
 const Navigation = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const connexionStatus = useSelector((state) => state.user.isConnected);
-  const isLoading = useSelector((state) => state.user.isLoading);
+  const connexionStatus = useAppSelector((state) => state.user.isConnected);
+  const isLoading = useAppSelector((state) => state.user.isLoading);
 
   // Disconnect User
   const deleteToken = () => {
-    localStorage.setItem("auth_token", false);
+    localStorage.setItem("auth_token", "false");
     dispatch(setStatus(false));
   };
 

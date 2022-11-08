@@ -1,6 +1,11 @@
-import axios from "../helpers/axios.config.ts";
+import axios from "../helpers/axios.config";
 
-const getUsers = async (dispatch, setUsers) => {
+type Props = {
+  dispatch: Function;
+  setUsers: Function;
+};
+
+const getUsers = async ({dispatch, setUsers}: Props) => {
   await axios
     .get("/users")
     .then((res) => {

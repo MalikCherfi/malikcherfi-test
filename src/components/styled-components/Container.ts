@@ -1,17 +1,18 @@
 import styled from "styled-components";
 
 type Props = {
-  row: string,
+  justifyContent: string,
+  flexDirection: string
 }
 
 const Container = styled.div<Props>`
   padding-top: 90px;
   min-height: 100vh;
   display: flex;
-  justify-content: ${(props) => (props.row ? "center" : "space-evenly")};
+  justify-content: ${(p: Props) => (p.justifyContent)};
   align-items: center;
   align-content: center;
-  flex-direction: ${(props) => (props.row ? "row" : "column")};
+  flex-direction: ${(p: Props) => (p.flexDirection)};
   flex-wrap: wrap;
 `;
 

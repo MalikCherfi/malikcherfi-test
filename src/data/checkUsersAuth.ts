@@ -1,6 +1,18 @@
-import axios from "../helpers/axios.config.ts";
+import axios from "../helpers/axios.config";
 
-const checkUsersAuth = (token, dispatch, setStatus, setIsLoading) => {
+type Props = {
+  token: string;
+  dispatch: Function;
+  setStatus: Function;
+  setIsLoading: Function;
+};
+
+const checkUsersAuth = ({
+  token,
+  dispatch,
+  setStatus,
+  setIsLoading,
+}: Props) => {
   axios
     .get("/session/user", {
       headers: {
@@ -8,7 +20,7 @@ const checkUsersAuth = (token, dispatch, setStatus, setIsLoading) => {
       },
     })
     .then((res) => {
-      console.log(res.data)
+      console.log(res.data);
       dispatch(setStatus(true));
     })
     .catch((err) => console.log(err));

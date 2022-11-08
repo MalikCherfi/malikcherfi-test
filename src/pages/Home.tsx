@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <>
       {!isLoading && (
-        <Container row="row">
+        <Container justifyContent="center" flexDirection="row">
           {!connexionStatus ? (
             <h1 style={{ color: color, textAlign: "center" }}>
               Vous devez vous connecter pour accéder à la liste des utilisateurs

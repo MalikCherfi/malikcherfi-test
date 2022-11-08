@@ -1,27 +1,17 @@
+import React from "react";
 import Container from "../../components/styled-components/Container";
 import AuthForm from "../../components/AuthForm";
-import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
-import registerUsers from "../../data/registerUsers.js";
+import { useAppSelector } from "../../app/hooks";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
-  const { register, handleSubmit } = useForm();
-  const color = useSelector((state) => state.color.color);
-
-  const onSubmit = (payload) => {
-    registerUsers(payload, toast);
-  };
+  const color = useAppSelector((state) => state.color.color);
 
   return (
-    <Container>
+    <Container justifyContent="space-evenly" flexDirection="column">
       <h1 style={{ color: color }}>Créer un compte</h1>
-      <AuthForm
-        handleSubmit={handleSubmit}
-        onSubmit={onSubmit}
-        register={register}
-      />
+      <AuthForm />
       <ToastContainer
         position="top-center"
         autoClose={3000}
