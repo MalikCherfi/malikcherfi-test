@@ -1,13 +1,13 @@
 import express from "express";
 import bcrypt from "bcryptjs";
-import jwt from "../utils/jwt.js";
+import jwt from "../utils/jwt";
 import mongoose from "mongoose";
-import User from "../models/User.js";
+import User from "../models/User";
 
 const userRouter = express.Router();
 const databaseUrl = process.env.DATABASE_URL;
 
-mongoose.connect(databaseUrl);
+mongoose.connect(databaseUrl!);
 
 // REGISTER USER
 userRouter.post("/register", async (req, res) => {
@@ -29,12 +29,12 @@ userRouter.post("/login", async (req, res) => {
       email: email,
     });
 
-    const checkPassword = bcrypt.compareSync(password, user.password);
+    const checkPassword = bcrypt.compareSync(password, user!.password!);
 
     if (!checkPassword) {
       res.status(401).send("Email address or password not valid");
     } else {
-      const token = await jwt.signAccessToken(user);
+      const token = await jwt.signAccessToken(user!);
 
       res.status(201).send(token);
     }
@@ -48,7 +48,7 @@ userRouter.get("/session/user", async (req, res) => {
   const token = req.headers.authorization;
 
   await jwt
-    .verifyAccessToken(token)
+    .verifyAccessToken(token!)
     .then(() => {
       User.find({})
         .then((user) => {

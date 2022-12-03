@@ -2,10 +2,9 @@
   "name": "malikcherfi-test",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "proxy": "http://localhost:8000",
   "overrides": {
-    "@types/react": "^18.0.0"
+    "@types/react": "^18.0.24"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
@@ -34,7 +33,6 @@
     "react-scripts": "5.0.1",
     "react-toastify": "^9.0.8",
     "styled-components": "^5.3.6",
-    "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -42,7 +40,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "api": "nodemon ./src/api/app.js"
+    "api": "nodemon ./src/api/app.ts"
   },
   "eslintConfig": {
     "extends": [
@@ -63,9 +61,15 @@
     ]
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cors": "^2.8.12",
+    "@types/http-errors": "^2.0.1",
+    "@types/jsonwebtoken": "^8.5.9",
     "@types/react-redux": "^7.1.24",
     "@types/redux": "^3.6.0",
     "@types/redux-thunk": "^2.1.0",
-    "@types/styled-components": "^5.1.26"
+    "@types/styled-components": "^5.1.26",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.3"
   }
 }
