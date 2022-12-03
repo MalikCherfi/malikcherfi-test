@@ -10,5 +10,6 @@ describe("render App", () => {
     const linkElement = screen.getByText(/learn react/i);
     // Assert
     expect(linkElement).toBeInTheDocument();
+    // Salut
   });
 });
