@@ -1,3 +1,9 @@
+## Help
+
+Jest Axios : https://github.com/axios/axios/issues/5101
+Jest Redux : https://stackoverflow.com/questions/68532624/in-jest-could-not-find-react-redux-context-value-please-ensure-the-component
+
+
 ## Launch Project with
 
 ### `npm install`

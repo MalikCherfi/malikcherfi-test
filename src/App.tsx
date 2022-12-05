@@ -57,10 +57,9 @@ const App = () => {
 
   return (
     <>
-      <Navigation />
-
       <Background id="background">
         <Routes>
+          <Route element={<Navigation />} />
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
