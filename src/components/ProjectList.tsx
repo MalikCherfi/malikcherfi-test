@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import ProjectsTable from "./ProjectsTable";
 
 type Props = {
   projects: object[];
@@ -9,11 +9,15 @@ const ProjectList = ({ projects }: Props) => {
   return (
     <>
       {projects.map((project: any, index) => (
-        <ul>
-          <NavLink to={"/project/" + project._id}>
-            <li>{project.name}</li>
-          </NavLink>
-        </ul>
+        <ProjectsTable
+          name={project.name}
+          description={project.description}
+          creationDate={project.creationDate}
+          beginningDate={project.beginningDate}
+          endDate={project.endDate}
+          id={project._id}
+          key={index}
+        />
       ))}
     </>
   );

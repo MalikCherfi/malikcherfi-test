@@ -15,9 +15,9 @@ const Projects = () => {
   const handleShow = () => setShow(true);
 
   return (
-    <>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
+        Ajouter
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -41,7 +41,7 @@ const Projects = () => {
         pauseOnHover
         theme="colored"
       />
-    </>
+    </div>
   );
 };
 
