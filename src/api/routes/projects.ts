@@ -1,5 +1,5 @@
 import express from "express";
-import Project from "../models/Project";
+import { Project } from "../models/Project";
 
 const projectRouter = express.Router();
 
@@ -26,7 +26,6 @@ projectRouter.get("/project", async (req, res) => {
 
 // UPDATE PROJECTS
 projectRouter.put("/project/:id", async (req, res) => {
-  console.log("yooooooooooooo");
 
   try {
     await Project.findByIdAndUpdate(req.params.id, req.body, { new: true });
