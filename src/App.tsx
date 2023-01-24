@@ -5,12 +5,12 @@ import { useDispatch } from "react-redux";
 // UTILS
 import randomColors from "./utils/color";
 // STORE
-import { setStatus } from "./app/states/user";
-import { setIsLoading } from "./app/states/user";
-import { setUsers } from "./app/states/user";
+import { setStatus, setIsLoading, setUsers } from "./app/states/user";
+import { setProjects } from "./app/states/project";
 import { setTextColor } from "./app/states/color";
 // DATA
 import getUsers from "./data/getUsers";
+import getProjects from "./data/projects/getProjects";
 // AUTH
 import checkUsersAuth from "./data/checkUsersAuth";
 // LAYOUTS
@@ -23,6 +23,7 @@ import Login from "./pages/Login/index";
 import Register from "./pages/Register/index";
 // COMPONENTS
 import Background from "./components/styled-components/Background";
+import ContentContainer from "./components/styled-components/ContentContainer";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -36,6 +37,8 @@ const App = () => {
 
     // Get users
     getUsers({ dispatch, setUsers });
+    // Get projects
+    getProjects({ dispatch, setProjects });
   }, []);
 
   // Change opacity of Nav on scroll
@@ -71,18 +74,18 @@ const App = () => {
   });
 
   return (
-    <>
+    <Background id="background">
       <Navigation />
 
-      <Background id="background">
+      <ContentContainer>
         <Routes>
           <Route path="/users" element={<Users />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
-      </Background>
-    </>
+      </ContentContainer>
+    </Background>
   );
 };
 
