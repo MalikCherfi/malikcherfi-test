@@ -20,11 +20,6 @@ const Navigation = () => {
     <>
       <NavBar id="nav-bar">
         <ul>
-          <li>
-            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-              Home
-            </Link>
-          </li>
           {!isLoading && !connexionStatus ? (
             <li>
               <Link
@@ -42,6 +37,30 @@ const Navigation = () => {
               <li>Se déconnecter</li>
             </a>
           )}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
+            <li>
+              <Link
+                to="/projects"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Projets
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/users"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Utilisateurs
+              </Link>
+            </li>
+          </div>
         </ul>
       </NavBar>
     </>

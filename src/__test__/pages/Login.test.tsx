@@ -1,7 +1,7 @@
 import React from "react";
 import { act, render, waitFor } from "@testing-library/react";
 import Login from "../../pages/Login/index";
-import Home from "../../pages/Home";
+import Users from "../../pages/Users/Users";
 import { Provider } from "react-redux";
 import { store } from "../../app/store";
 import { BrowserRouter as Router, MemoryRouter } from "react-router-dom";

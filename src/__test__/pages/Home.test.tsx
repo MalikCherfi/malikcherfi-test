@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import Home from "../../pages/Home";
+import Users from "../../pages/Users/Users";
 import { Provider } from "react-redux";
 import { store } from "../../app/store";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -14,11 +14,11 @@ const renderWithContext = (element: React.ReactElement) => {
   );
 };
 
-describe("render Home", () => {
+describe("render Users", () => {
   it("should render component when page is loaded", () => {
     // Arrange
     store.dispatch(setIsLoading(false));
-    const { getByText } = renderWithContext(<Home />);
+    const { getByText } = renderWithContext(<Users />);
 
     // Act
     const linkElement = getByText(
@@ -32,7 +32,7 @@ describe("render Home", () => {
   it("should not render component when page is not loaded", () => {
     // Arrange
     store.dispatch(setIsLoading(true));
-    const { queryByText } = renderWithContext(<Home />);
+    const { queryByText } = renderWithContext(<Users />);
 
     // Act
     const linkElement = queryByText(
@@ -47,7 +47,7 @@ describe("render Home", () => {
     // Arrange
     store.dispatch(setIsLoading(false));
     store.dispatch(setStatus(false));
-    const { queryByText } = renderWithContext(<Home />);
+    const { queryByText } = renderWithContext(<Users />);
 
     // Act
     const linkElement = queryByText(
@@ -62,7 +62,7 @@ describe("render Home", () => {
     // Arrange
     store.dispatch(setIsLoading(false));
     store.dispatch(setStatus(true));
-    const { queryByText } = renderWithContext(<Home />);
+    const { queryByText } = renderWithContext(<Users />);
 
     // Act
     const linkElement = queryByText(

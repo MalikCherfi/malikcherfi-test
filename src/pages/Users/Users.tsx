@@ -1,10 +1,10 @@
 import React from "react";
-import Container from "../components/styled-components/Container";
-import CardList from "../components/CardList";
-import { useAppSelector } from "../app/hooks";
-import GlobalStyle from "../components/styled-components/GlobalStyle";
+import Container from "../../components/styled-components/Container";
+import CardList from "../../components/CardList";
+import { useAppSelector } from "../../app/hooks";
+import GlobalStyle from "../../components/styled-components/GlobalStyle";
 
-const Home = () => {
+const Users = () => {
   const connexionStatus = useAppSelector((state) => state.user.isConnected);
   const isLoading = useAppSelector((state) => state.user.isLoading);
   const users = useAppSelector((state) => state.user.users);
@@ -28,4 +28,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Users;

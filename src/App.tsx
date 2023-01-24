@@ -16,7 +16,9 @@ import checkUsersAuth from "./data/checkUsersAuth";
 // LAYOUTS
 import Navigation from "./layouts/Navigation";
 // PAGES
-import Home from "./pages/Home";
+import Users from "./pages/Users/Users";
+import Projects from "./pages/Projects/Projects";
+import Project from "./pages/Projects/Project";
 import Login from "./pages/Login/index";
 import Register from "./pages/Register/index";
 // COMPONENTS
@@ -74,7 +76,8 @@ const App = () => {
 
       <Background id="background">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/projects" element={<Projects />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
