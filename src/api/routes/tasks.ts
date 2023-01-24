@@ -1,10 +1,10 @@
 import express from "express";
 import { Task } from "../models/Project";
 
-const projectRouter = express.Router();
+const taskRouter = express.Router();
 
 // CREATE TASK
-projectRouter.post("/task", async (req, res) => {
+taskRouter.post("/task", async (req, res) => {
   try {
     await Task.create({ ...req.body });
     res.status(201).send("Task created");
@@ -14,8 +14,8 @@ projectRouter.post("/task", async (req, res) => {
 });
 
 // GET TASK
-projectRouter.get("/task", async (req, res) => {
-  const users = await Task.find({});
+taskRouter.get("/task/:projectId", async (req, res) => {
+  const users = await Task.find({ projectId: req.params.projectId });
 
   try {
     res.status(200).json(users);
@@ -25,7 +25,7 @@ projectRouter.get("/task", async (req, res) => {
 });
 
 // UPDATE TASK
-projectRouter.put("/task/:projectId", async (req, res) => {
+taskRouter.put("/task/:projectId", async (req, res) => {
   try {
     await Task.updateMany({ projectId: req.params.projectId }, req.body, {
       new: true,
@@ -37,7 +37,7 @@ projectRouter.put("/task/:projectId", async (req, res) => {
 });
 
 // DELETE TASK
-projectRouter.delete("/task/:projectId", async (req, res) => {
+taskRouter.delete("/task/:projectId", async (req, res) => {
   try {
     await Task.deleteMany({ projectId: req.params.projectId });
     res.status(200).send("Task delete with success");
@@ -46,4 +46,4 @@ projectRouter.delete("/task/:projectId", async (req, res) => {
   }
 });
 
-export { projectRouter };
+export { taskRouter };
