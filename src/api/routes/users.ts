@@ -70,4 +70,14 @@ userRouter.get("/users", async (req, res) => {
   }
 });
 
+// DELETE USERS
+userRouter.delete("/users/:id", async (req, res) => {
+  try {
+    await User.findByIdAndRemove(req.params.id);
+    res.status(200).send("User delete with success");
+  } catch (err: any) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 export { userRouter };
