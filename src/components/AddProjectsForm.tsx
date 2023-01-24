@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import addProjects from "../data/projects/addProjects";
+import updateProjects from "../data/projects/updateProjects";
 
 type Data = {
   name: string;
@@ -16,9 +17,13 @@ type Data = {
   endDate: Date;
 };
 
-const AddProjectForm = () => {
+type Props = {
+  categoryForm: string;
+  id: string;
+};
+
+const AddProjectForm = ({ categoryForm, id }: Props) => {
   const color = useAppSelector((state) => state.color.textColor);
-  const dispatch = useAppDispatch();
   const { register, handleSubmit } = useForm<Data>();
 
   const date = new Date();
@@ -29,7 +34,9 @@ const AddProjectForm = () => {
       creationDate: date.toDateString(),
     };
 
-    addProjects({ payload, toastSuccess: toast.success });
+    categoryForm == "add"
+      ? addProjects({ payload, toastSuccess: toast.success })
+      : updateProjects({ id, payload, toastSuccess: toast.success });
   };
 
   return (
@@ -71,12 +78,22 @@ const AddProjectForm = () => {
           />
         </Form.Group>
         <DivCenter>
-          <Button
-            style={{ backgroundColor: color, border: "none" }}
-            type="submit"
-          >
-            Ajouter
-          </Button>
+          {categoryForm == "add" ? (
+            <Button
+              style={{ backgroundColor: color, border: "none" }}
+              type="submit"
+            >
+              Ajouter
+            </Button>
+          ) : null}
+          {categoryForm == "modify" ? (
+            <Button
+              style={{ backgroundColor: color, border: "none" }}
+              type="submit"
+            >
+              Modifier
+            </Button>
+          ) : null}
         </DivCenter>
       </Form>
     </FormContainer>

@@ -9,10 +9,10 @@ import Modal from "react-bootstrap/Modal";
 const Projects = () => {
   const projects = useAppSelector((state) => state.project.projects);
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState({ status: false, form: "", id: "" });
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setShow({ status: false, form: "", id: "" });
+  const handleShow = () => setShow({ status: true, form: "add", id: "" });
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -20,12 +20,12 @@ const Projects = () => {
         Ajouter
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show.status} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Ajouter un Projet</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <AddProjectForm />
+          <AddProjectForm categoryForm={show.form} id={show.id} />
         </Modal.Body>
       </Modal>
       <ProjectList projects={projects} />
