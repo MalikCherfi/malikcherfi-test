@@ -2,11 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Define a type for the slice state
 interface ColorState {
-  color: string;
+  textColor: string;
+  cardColor: string;
 }
 
 const initialState: ColorState = {
-  color: "rgb(57, 57, 58)",
+  textColor: "rgb(57, 57, 58)",
+  cardColor: "rgb(255, 133, 82)",
 };
 
 export const userSlice = createSlice({
@@ -14,12 +16,15 @@ export const userSlice = createSlice({
   initialState,
 
   reducers: {
-    setColor: (state, action: PayloadAction<string>) => {
-      state.color = action.payload;
+    setTextColor: (state, action: PayloadAction<string>) => {
+      state.textColor = action.payload;
+    },
+    setCardColor: (state, action: PayloadAction<string>) => {
+      state.cardColor = action.payload;
     },
   },
 });
 
-export const { setColor } = userSlice.actions;
+export const { setTextColor, setCardColor } = userSlice.actions;
 
 export default userSlice.reducer;

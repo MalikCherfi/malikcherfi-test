@@ -6,10 +6,10 @@ type Props = {
 };
 
 const registerUsers = async ({data, toastSuccess}: Props) => {
-  await axios
+ return await axios
     .post("/register", data)
     .then(() => {
-      toastSuccess("Inscription réussi, veuillez vous connecter");
+      return toastSuccess("Inscription réussi, veuillez vous connecter");
     })
     .catch((err) => console.log(err));
 };

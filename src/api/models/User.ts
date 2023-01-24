@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 import { Schema, model, Types } from "mongoose";
 
 interface User {

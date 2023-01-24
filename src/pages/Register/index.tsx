@@ -6,11 +6,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
-  const color = useAppSelector((state) => state.color.color);
+  const textColor = useAppSelector((state) => state.color.textColor);
 
   return (
     <Container justifyContent="space-evenly" flexDirection="column">
-      <h1 style={{ color: color }}>Créer un compte</h1>
+      <h1 id="create-account" style={{ color: textColor }}>Créer un compte</h1>
       <AuthForm />
       <ToastContainer
         position="top-center"

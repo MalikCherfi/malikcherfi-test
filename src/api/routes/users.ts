@@ -1,13 +1,9 @@
 import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "../utils/jwt";
-import mongoose from "mongoose";
 import User from "../models/User";
 
 const userRouter = express.Router();
-const databaseUrl = process.env.DATABASE_URL;
-
-mongoose.connect(databaseUrl!);
 
 // REGISTER USER
 userRouter.post("/register", async (req, res) => {
@@ -68,7 +64,7 @@ userRouter.get("/users", async (req, res) => {
   const users = await User.find({});
 
   try {
-    res.status(200).send(users);
+    res.status(200).json(users);
   } catch {
     res.status(404).send("Users not found");
   }

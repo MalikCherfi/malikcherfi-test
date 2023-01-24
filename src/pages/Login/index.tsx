@@ -8,12 +8,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const connexionStatus = useAppSelector((state) => state.user.isConnected);
-  const color = useAppSelector((state) => state.color.color);
+  const textColor = useAppSelector((state) => state.color.textColor);
 
   return (
     <>
       <Container justifyContent="space-evenly" flexDirection="column">
-        <h1 style={{ color: color }}>Se connecter</h1>
+        <h1 style={{ color: textColor }}>Se connecter</h1>
         <AuthForm />
         <ToastContainer
           position="top-center"

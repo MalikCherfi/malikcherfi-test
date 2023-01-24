@@ -19,7 +19,7 @@ type Data = {
 
 const AuthForm = () => {
   // Check if it's register form or login form
-  const registerForm = document.location.href.includes("register");
+  const registerForm = window.location.href.includes("register");
   let buttonTitle = "";
   if (registerForm) {
     buttonTitle = "S'inscrire";
@@ -27,7 +27,7 @@ const AuthForm = () => {
     buttonTitle = "Se connecter";
   }
 
-  const color = useAppSelector((state) => state.color.color);
+  const color = useAppSelector((state) => state.color.textColor);
   const dispatch = useAppDispatch();
   const { register, handleSubmit } = useForm<Data>();
 
@@ -46,8 +46,8 @@ const AuthForm = () => {
 
   return (
     <FormContainer>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        {registerForm && (
+      <Form aria-label="connection-form" onSubmit={handleSubmit(onSubmit)}>
+        {registerForm ? (
           <>
             <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label style={{ color: color }}>Prénom</Form.Label>
@@ -66,7 +66,7 @@ const AuthForm = () => {
               />
             </Form.Group>
           </>
-        )}
+        ) : null}
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label style={{ color: color }}>Adresse email</Form.Label>
           <Form.Control
@@ -85,11 +85,14 @@ const AuthForm = () => {
           />
         </Form.Group>
         <DivCenter>
-          <Button style={{ backgroundColor: color }} type="submit">
+          <Button
+            style={{ backgroundColor: color, border: "none" }}
+            type="submit"
+          >
             {buttonTitle}
           </Button>
         </DivCenter>
-        {!registerForm && (
+        {!registerForm ? (
           <DivCenter>
             <p
               style={{
@@ -99,7 +102,7 @@ const AuthForm = () => {
                 color: color,
               }}
             >
-              Vous n'etes pas encore inscrit ?
+              Vous n'êtes pas encore inscrit ?
             </p>
             <p>
               <Link
@@ -110,7 +113,7 @@ const AuthForm = () => {
               </Link>
             </p>
           </DivCenter>
-        )}
+        ) : null}
       </Form>
     </FormContainer>
   );

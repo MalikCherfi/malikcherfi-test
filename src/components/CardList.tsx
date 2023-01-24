@@ -1,19 +1,21 @@
-import React from 'react'
-import UserCard  from "./UserCard";
-import { useAppSelector } from '../app/hooks'
+import React from "react";
+import UserCard from "./UserCard";
+import { useAppSelector } from "../app/hooks";
 
 type Props = {
-  users: object[],
-}
+  users: object[];
+};
 
 const CardList = ({ users }: Props) => {
-  const color = useAppSelector((state) => state.color.color);
+  const textColor = useAppSelector((state) => state.color.textColor);
+  const cardColor = useAppSelector((state) => state.color.cardColor);
 
   return (
     <>
       {users.map((user: any, index) => (
         <UserCard
-          color={color[Math.floor(Math.random() * color.length)]}
+          textColor={textColor[0]}
+          cardColor={cardColor[0]}
           name={user.name}
           lastname={user.lastName}
           email={user.email}

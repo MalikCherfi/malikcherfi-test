@@ -8,7 +8,7 @@ import randomColors from "./utils/color";
 import { setStatus } from "./app/states/user";
 import { setIsLoading } from "./app/states/user";
 import { setUsers } from "./app/states/user";
-import { setColor } from "./app/states/color";
+import { setTextColor } from "./app/states/color";
 // DATA
 import getUsers from "./data/getUsers";
 // AUTH
@@ -28,11 +28,24 @@ const App = () => {
   useEffect(() => {
     // Check token and connect user if there is token
     const token = localStorage.getItem("auth_token")!;
-    checkUsersAuth({ token, dispatch, setStatus, setIsLoading });
+    checkUsersAuth({ token, dispatch, setStatus });
+
+    dispatch(setIsLoading(false));
 
     // Get users
     getUsers({ dispatch, setUsers });
   }, []);
+
+  // Change opacity of Nav on scroll
+  window.addEventListener("scroll", () => {
+    let scrollY = window.scrollY;
+    let nav = document.getElementById("nav-bar");
+    if (scrollY >= 15) {
+      nav!.style.opacity = "0";
+    } else {
+      nav!.style.opacity = "1";
+    }
+  });
 
   // Change background color
   window.addEventListener("click", () => {
@@ -45,7 +58,7 @@ const App = () => {
 
     // Change text color
     dispatch(
-      setColor(
+      setTextColor(
         randomColors.filter(
           (color: string) =>
             color !==
@@ -57,9 +70,10 @@ const App = () => {
 
   return (
     <>
+      <Navigation />
+
       <Background id="background">
         <Routes>
-          <Route element={<Navigation />} />
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

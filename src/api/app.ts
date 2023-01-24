@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 import cors from "cors";
 import { setupRoutes } from "./routes/index";
 const app = express();
@@ -17,6 +18,17 @@ app.use(
 
 setupRoutes(app);
 
-app.listen(port, () => {
-  console.log("Server app listening on port " + port);
-});
+const databaseUrl = process.env.DATABASE_URL;
+
+mongoose
+  .connect(databaseUrl!)
+  .then(() => {
+    app.listen(port, () => {
+      console.log("Server app listening on port " + port);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+export default app;

@@ -5,13 +5,15 @@ type Props = {
   setUsers: Function;
 };
 
-const getUsers = async ({dispatch, setUsers}: Props) => {
-  await axios
+const getUsers = async ({ dispatch, setUsers }: Props) => {
+  return await axios
     .get("/users")
     .then((res) => {
-      dispatch(setUsers(res.data));
+     return dispatch(setUsers(res.data));
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      return err;
+    });
 };
 
 export default getUsers;

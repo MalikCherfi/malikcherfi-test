@@ -8,13 +8,16 @@ type Props = {
 };
 
 const loginUsers = async ({ data, dispatch, setStatus, toastError }: Props) => {
-  await axios
+  return await axios
     .post("/login", data)
     .then((res) => {
-      localStorage.setItem("auth_token", res.data);
-      setTimeout(() => dispatch(setStatus(true)), 300);
+      return (localStorage.setItem("auth_token", res.data),
+        setTimeout(() => dispatch(setStatus(true)), 300)
+      );
     })
-    .catch((err) => toastError("Email ou mot de passe incorrect"));
+    .catch(() => {
+      return toastError("Email ou mot de passe incorrect");
+    });
 };
 
 export default loginUsers;
