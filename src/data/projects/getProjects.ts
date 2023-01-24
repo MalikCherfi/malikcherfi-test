@@ -7,7 +7,7 @@ type Props = {
 
 const getProjects = async ({ dispatch, setProjects }: Props) => {
   return await axios
-    .get("/projects")
+    .get("/project")
     .then((res) => {
       return dispatch(setProjects(res.data));
     })

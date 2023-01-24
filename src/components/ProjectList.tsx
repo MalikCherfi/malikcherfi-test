@@ -1,6 +1,5 @@
 import React from "react";
-import UserCard from "./UserCard";
-import { useAppSelector } from "../app/hooks";
+import { NavLink } from "react-router-dom";
 
 type Props = {
   projects: object[];
@@ -11,7 +10,9 @@ const ProjectList = ({ projects }: Props) => {
     <>
       {projects.map((project: any, index) => (
         <ul>
-          <li>{project.name}</li>
+          <NavLink to={"/project/" + project._id}>
+            <li>{project.name}</li>
+          </NavLink>
         </ul>
       ))}
     </>
