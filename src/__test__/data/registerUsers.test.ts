@@ -18,12 +18,18 @@ const toastSuccess = toast.success;
 describe("registerUsers", () => {
   it("fetches successfully data from an API", async () => {
     // Arrange
-    const data = [{ email: "malikcherfi@gmail.com", password: "password" }];
+    const payload = [
+      {
+        email: "malikcherfi@gmail.com",
+        password: "password",
+        creationDate: "02/03/2023",
+      },
+    ];
     mockedAxios.post.mockResolvedValue({
       data: [{ email: "malikcherfi@gmail.com", password: "password" }],
     });
     // Act
-    await registerUsers({ data, toastSuccess });
+    await registerUsers({ payload, toastSuccess });
 
     // Assert
     expect(mockedAxios.post).toHaveBeenCalledWith("/register", [
@@ -36,14 +42,20 @@ describe("registerUsers", () => {
 
   it("throws an error when incorrect data is passed", async () => {
     // Arrange
-    const data = [{ email: "malikcherfi@gmail.com", password: "password" }];
+    const payload = [
+      {
+        email: "malikcherfi@gmail.com",
+        password: "password",
+        creationDate: "02/03/2023",
+      },
+    ];
     mockedAxios.post.mockRejectedValue({
       error: "some error",
     });
     jest.spyOn(global.console, "log");
 
     // Act
-    await registerUsers({ data, toastSuccess });
+    await registerUsers({ payload, toastSuccess });
 
     // Assert
     expect(console.log).toHaveBeenCalledWith({

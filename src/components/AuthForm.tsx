@@ -30,10 +30,16 @@ const AuthForm = () => {
   const color = useAppSelector((state) => state.color.textColor);
   const dispatch = useAppDispatch();
   const { register, handleSubmit } = useForm<Data>();
+  const date = new Date();
 
   const onSubmit = (data: object) => {
+    const payload = {
+      ...data,
+      creationDate: date.toDateString(),
+    };
+
     if (registerForm) {
-      registerUsers({ data, toastSuccess: toast.success });
+      registerUsers({ payload, toastSuccess: toast.success });
     } else {
       loginUsers({
         data,

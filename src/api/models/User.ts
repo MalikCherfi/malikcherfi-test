@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import { Schema, model, Types } from "mongoose";
 
 interface User {
@@ -6,6 +5,7 @@ interface User {
   name: string;
   lastName: string;
   email: string;
+  creationDate: Date;
   password: string;
 }
 
@@ -13,6 +13,7 @@ const userSchema = new Schema<User>({
   name: String,
   lastName: String,
   email: String,
+  creationDate: Date,
   password: String,
 });
 
