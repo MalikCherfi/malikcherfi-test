@@ -126,8 +126,8 @@ const AuthForm = () => {
 };
 
 const FormContainer = styled.div`
-  width: 25%;
-  height: 400px;
+  width: 100%;
+  height: 50vh;
   @media (max-width: 600px) {
     width: 95%;
   }

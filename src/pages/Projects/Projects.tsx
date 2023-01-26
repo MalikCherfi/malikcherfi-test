@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ProjectList from "../../components/ProjectList";
-import AddProjectForm from "../../components/AddProjectsForm";
+import ProjectForm from "../../components/ProjectsForm";
 import { useAppSelector } from "../../app/hooks";
 import { ToastContainer, toast } from "react-toastify";
 import Button from "react-bootstrap/Button";
@@ -25,7 +25,7 @@ const Projects = () => {
           <Modal.Title>Ajouter un Projet</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <AddProjectForm categoryForm={show.form} id={show.id} />
+          <ProjectForm categoryForm={show.form} id={show.id} />
         </Modal.Body>
       </Modal>
       <ProjectList projects={projects} />

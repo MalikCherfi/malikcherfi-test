@@ -28,7 +28,7 @@ const Login = () => {
           theme="colored"
         />
       </Container>
-      {connexionStatus && <Navigate replace to="/" />}
+      {connexionStatus && <Navigate replace to="/users" />}
     </>
   );
 };

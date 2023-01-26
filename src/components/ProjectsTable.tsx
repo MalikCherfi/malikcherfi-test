@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AddProjectForm from "./AddProjectsForm";
+import AddProjectForm from "./ProjectsForm";
 import deleteProjects from "../data/projects/deleteProjects";
 import Table from "react-bootstrap/Table";
 import { NavLink } from "react-router-dom";
