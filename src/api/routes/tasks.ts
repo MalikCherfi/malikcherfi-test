@@ -25,9 +25,9 @@ taskRouter.get("/task/:projectId", async (req, res) => {
 });
 
 // UPDATE TASK
-taskRouter.put("/task/:projectId", async (req, res) => {
+taskRouter.put("/task/:id", async (req, res) => {
   try {
-    await Task.updateMany({ projectId: req.params.projectId }, req.body, {
+    await Task.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
     res.status(200).send("task update with success");
@@ -37,9 +37,9 @@ taskRouter.put("/task/:projectId", async (req, res) => {
 });
 
 // DELETE TASK
-taskRouter.delete("/task/:projectId", async (req, res) => {
+taskRouter.delete("/task/:id", async (req, res) => {
   try {
-    await Task.deleteMany({ projectId: req.params.projectId });
+    await Task.findByIdAndRemove(req.params.id);
     res.status(200).send("Task delete with success");
   } catch (err: any) {
     res.status(500).json({ message: err.message });

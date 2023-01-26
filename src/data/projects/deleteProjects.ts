@@ -5,7 +5,7 @@ type Props = {
   toastSuccess: Function;
 };
 
-const getProjects = async ({ id, toastSuccess }: Props) => {
+const deleteProjects = async ({ id, toastSuccess }: Props) => {
   return await axios
     .delete(`/project/${id}`)
     .then(() => {
@@ -16,4 +16,4 @@ const getProjects = async ({ id, toastSuccess }: Props) => {
     });
 };
 
-export default getProjects;
+export default deleteProjects;

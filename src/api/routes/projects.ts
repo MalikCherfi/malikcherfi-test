@@ -1,5 +1,5 @@
 import express from "express";
-import { Project } from "../models/Project";
+import { Project, Task } from "../models/Project";
 
 const projectRouter = express.Router();
 
@@ -39,6 +39,7 @@ projectRouter.put("/project/:id", async (req, res) => {
 projectRouter.delete("/project/:id", async (req, res) => {
   try {
     await Project.findByIdAndRemove(req.params.id);
+    await Task.deleteMany({ id: req.params.id });
     res.status(200).send("Project delete with success");
   } catch (err: any) {
     res.status(500).json({ message: err.message });

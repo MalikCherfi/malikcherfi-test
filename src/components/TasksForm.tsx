@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useAppSelector, useAppDispatch } from "../app/hooks";
 import addTasks from "../data/tasks/addTasks";
+import updateTasks from "../data/tasks/updateTasks";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import styled from "styled-components";
@@ -16,9 +17,11 @@ type Data = {
 
 type Props = {
   projectId: string;
+  id: string;
+  categoryForm: string;
 };
 
-const AddProjectForm = ({ projectId }: Props) => {
+const AddProjectForm = ({ projectId, id, categoryForm }: Props) => {
   const color = useAppSelector((state) => state.color.textColor);
   const { register, handleSubmit } = useForm<Data>();
 
@@ -30,7 +33,9 @@ const AddProjectForm = ({ projectId }: Props) => {
       projectId: projectId,
     };
 
-    addTasks({ payload, toastSuccess: toast.success });
+    categoryForm == "add"
+      ? addTasks({ payload, toastSuccess: toast.success })
+      : updateTasks({ id, payload, toastSuccess: toast.success });
   };
 
   return (
@@ -49,6 +54,7 @@ const AddProjectForm = ({ projectId }: Props) => {
           <Form.Label style={{ color: color }}>Description</Form.Label>
           <Form.Control
             type="text"
+            as="textarea"
             placeholder="Description"
             {...register("description", { required: true })}
           />
@@ -73,12 +79,21 @@ const AddProjectForm = ({ projectId }: Props) => {
         </Form.Group>
 
         <DivCenter>
-          <Button
-            style={{ backgroundColor: color, border: "none" }}
-            type="submit"
-          >
-            Ajouter
-          </Button>
+          {categoryForm == "add" ? (
+            <Button
+              style={{ backgroundColor: color, border: "none" }}
+              type="submit"
+            >
+              Ajouter
+            </Button>
+          ) : (
+            <Button
+              style={{ backgroundColor: color, border: "none" }}
+              type="submit"
+            >
+              Modifier
+            </Button>
+          )}
         </DivCenter>
       </Form>
     </FormContainer>

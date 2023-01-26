@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import getTasks from "../../data/tasks/getTasks";
+import deleteTasks from "../../data/tasks/deleteTasks";
 import TasksForm from "../../components/TasksForm";
 import calendar from "../../utils/calendar";
 import { useParams } from "react-router-dom";
@@ -9,6 +10,8 @@ import Modal from "react-bootstrap/Modal";
 import { useDispatch } from "react-redux";
 import { setTasks } from "../../app/states/task";
 import { useAppSelector } from "../../app/hooks";
+import { AiFillDelete } from "react-icons/ai";
+import { BsFillPencilFill } from "react-icons/bs";
 
 type MyParams = {
   id: string;
@@ -19,18 +22,21 @@ const Project = () => {
 
   const { id } = useParams<keyof MyParams>() as MyParams;
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState({ status: false, taskId: "", form: "" });
+  const [isLoading, setIsLoading] = useState(true);
+  const [offSet, setOffSet] = useState([]);
+  const [barTaskHeight, setBarTaskHeight] = useState([]);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setShow({ status: false, taskId: "", form: "" });
+  const handleShow = (taskId: any, categoryForm: any) =>
+    setShow({ status: true, taskId: taskId, form: categoryForm });
 
   const dispatch = useDispatch();
 
-  let a;
-
   useEffect(() => {
     getTasks({ projectId: id, dispatch, setTasks });
-    a = document.getElementById("year-width");
+    // offset = child[0].offsetTop;
+    // setIsLoading(false);
   }, []);
 
   // CALENDAR FUNCTION
@@ -90,34 +96,103 @@ const Project = () => {
     );
   });
 
+  let offset: any = [];
+  let tasksHeight: any = [];
+
+  const observer = new MutationObserver((mutations, obs) => {
+    const hello = document.getElementsByClassName("task-container");
+    if (hello) {
+      for (let i = 0; i < hello.length; i++) {
+        offset.push((hello[i] as HTMLDivElement).offsetTop);
+        tasksHeight.push((hello[i] as HTMLDivElement).style.height);
+      }
+
+      setOffSet(offset);
+      setBarTaskHeight(tasksHeight);
+      setIsLoading(false);
+
+      obs.disconnect();
+      return;
+    }
+  });
+  observer.observe(document, {
+    childList: true,
+    subtree: true,
+  });
+
   return (
     <>
       <Container>
-        <TaskContainer>
+        <LeftContainer>
           <AddButtonContainer>
-            <Button variant="primary" onClick={handleShow}>
+            <Button
+              variant="primary"
+              onClick={() => {
+                handleShow("", "add");
+              }}
+            >
               Ajouter taches
             </Button>
           </AddButtonContainer>
-          <LeftContainer>
+          <TaskContainer>
             {tasks.map((task) => {
               return (
                 <div
+                  className="task-container"
                   style={{
                     height: "40px",
                     display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
                   }}
                 >
-                  <p style={{ margin: "1px" }} key={task._id}>
-                    {task.description}
-                  </p>
+                  <div
+                    style={{
+                      width: "35%",
+                      display: "flex",
+                      justifyContent: "space-evenly",
+                    }}
+                  >
+                    <button
+                      style={{
+                        width: "30px",
+                        height: "30px",
+                        borderRadius: "50px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                      onClick={() => {
+                        deleteTasks({ id: task._id });
+                      }}
+                    >
+                      <AiFillDelete />
+                    </button>
+                    <button
+                      style={{
+                        width: "30px",
+                        height: "30px",
+                        borderRadius: "50px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                      onClick={() => {
+                        handleShow(task._id, "modify");
+                      }}
+                    >
+                      <BsFillPencilFill />
+                    </button>
+                  </div>
+
+                  <div style={{ width: "65%", overflowY: "auto", whiteSpace: "normal" }}>
+                    <p style={{ margin: "1px" }} key={task._id}>
+                      {task.description}
+                    </p>
+                  </div>
                 </div>
               );
             })}
-          </LeftContainer>
-        </TaskContainer>
+          </TaskContainer>
+        </LeftContainer>
 
         <RightContainer>
           <DateContainer>
@@ -125,82 +200,95 @@ const Project = () => {
               return (
                 <div
                   id="year-width"
-                  style={{ display: "flex", flexDirection: "column" }}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "100%",
+                  }}
                 >
-                  <div style={{ display: "flex" }}>
-                    {months.map((month: any) => {
-                      return (
-                        <div
-                          style={{
-                            width: `${calendar[year][month] * 30}px`,
-                            display: "flex",
-                            justifyContent: "center",
-                            borderRight: "1px solid",
-                          }}
-                        >
-                          <p>{month}</p>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      position: "relative",
-                    }}
-                  >
-                    {days.map((day: any) => {
-                      return (
-                        <div
-                          style={{
-                            width: "30px",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            border: "1px solid",
-                          }}
-                        >
-                          <p style={{ margin: "1" }}>{day}</p>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <TaskBarContainer>
-                    {diffDays.map((e: any, index: any) => {
-                      return (
-                        <div
-                          style={{
-                            height: "40px",
-                            display: "flex",
-                            alignItems: "center",
-                          }}
-                        >
+                  <div style={{ height: "30%" }}>
+                    <div style={{ display: "flex" }}>
+                      {months.map((month: any) => {
+                        return (
                           <div
                             style={{
-                              position: "absolute",
-                              backgroundColor: "green",
-                              borderRadius: "10px",
-                              width: `${e * 30}px`,
-                              height: "10px",
-                              marginLeft: `${positionOfBeginDate[index]}px`,
+                              width: `${calendar[year][month] * 30}px`,
+                              display: "flex",
+                              justifyContent: "center",
+                              borderRight: "1px solid",
                             }}
-                          ></div>
-                        </div>
-                      );
-                    })}
-                  </TaskBarContainer>
+                          >
+                            <p>{month}</p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        position: "relative",
+                      }}
+                    >
+                      {days.map((day: any) => {
+                        return (
+                          <div
+                            style={{
+                              width: "30px",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              border: "1px solid",
+                            }}
+                          >
+                            <p style={{ margin: "1" }}>{day}</p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  {!isLoading && (
+                    <TaskBarContainer>
+                      {diffDays.map((e: any, index: any) => {
+                        return (
+                          <div
+                            style={{
+                              height: barTaskHeight[index],
+                              display: "flex",
+                              alignItems: "center",
+                              top: `${offSet[index]}px`,
+                            }}
+                          >
+                            <div
+                              style={{
+                                position: "absolute",
+                                backgroundColor: "green",
+                                borderRadius: "10px",
+                                width: `${e * 30}px`,
+                                height: "10px",
+                                marginLeft: `${positionOfBeginDate[index]}px`,
+                              }}
+                            ></div>
+                          </div>
+                        );
+                      })}
+                    </TaskBarContainer>
+                  )}
                 </div>
               );
             })}
           </DateContainer>
         </RightContainer>
 
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show.status} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Ajouter un Projet</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <TasksForm projectId={id} />
+            <TasksForm
+              projectId={id}
+              id={show.taskId}
+              categoryForm={show.form}
+            />
           </Modal.Body>
         </Modal>
       </Container>
@@ -211,8 +299,8 @@ const Project = () => {
 export default Project;
 
 const Container = styled.div`
-  width: 70vw;
-  height: 60vh;
+  width: 80vw;
+  height: 90vh;
   display: flex;
   background-color: white;
   border-radius: 20px;
@@ -220,9 +308,10 @@ const Container = styled.div`
 `;
 
 const TaskContainer = styled.div`
-  width: 25%;
-  height: 100%;
-  box-shadow: 10px 0 5px -5px #888;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 70%;
 `;
 
 const RightContainer = styled.div`
@@ -235,18 +324,20 @@ const RightContainer = styled.div`
 `;
 
 const LeftContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 70%;
+  width: 25%;
+  height: 100%;
+  box-shadow: 10px 0 5px -5px #888;
 `;
 
 const DateContainer = styled.div`
   display: flex;
-  height: 30%;
+  height: 100%;
   width: 100%;
 `;
 
 const TaskBarContainer = styled.div`
+  position: relative;
+  height: 70%;
   display: flex;
   flex-direction: column;
 `;
