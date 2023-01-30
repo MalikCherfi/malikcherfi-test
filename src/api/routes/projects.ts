@@ -5,6 +5,7 @@ const projectRouter = express.Router();
 
 // CREATE PROJECT
 projectRouter.post("/project", async (req, res) => {
+  console.log(req.body)
   try {
     await Project.create({ ...req.body });
     res.status(201).send("Project created");

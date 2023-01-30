@@ -5,8 +5,8 @@ interface Project {
   name: string;
   creationDate: Date;
   description: string;
-  beginningDate: Date;
-  endDate: Date;
+  beginningDate: string;
+  endDate: string;
 }
 
 interface Task {
