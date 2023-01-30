@@ -24,9 +24,19 @@ projectRouter.get("/project", async (req, res) => {
   }
 });
 
+// GET ONE PROJECT
+projectRouter.get("/project/:id", async (req, res) => {
+  const users = await Project.findById(req.params.id);
+
+  try {
+    res.status(200).json(users);
+  } catch {
+    res.status(404).send("Users not found");
+  }
+});
+
 // UPDATE PROJECTS
 projectRouter.put("/project/:id", async (req, res) => {
-
   try {
     await Project.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.status(200).send("project update with success");
