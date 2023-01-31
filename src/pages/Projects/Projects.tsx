@@ -8,6 +8,7 @@ import Modal from "react-bootstrap/Modal";
 
 const Projects = () => {
   const projects = useAppSelector((state) => state.project.projects);
+  const textColor = useAppSelector((state) => state.color.textColor);
 
   const [show, setShow] = useState({ status: false, form: "", id: "" });
 
@@ -16,9 +17,14 @@ const Projects = () => {
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <Button variant="primary" onClick={handleShow}>
-        Ajouter
-      </Button>
+      <div style={{display: "flex", justifyContent: "flex-start"}}>
+        <Button
+          style={{ backgroundColor: textColor, border: "none" }}
+          onClick={handleShow}
+        >
+          Ajouter
+        </Button>
+      </div>
 
       <Modal show={show.status} onHide={handleClose}>
         <Modal.Header closeButton>
