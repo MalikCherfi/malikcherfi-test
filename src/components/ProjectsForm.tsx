@@ -35,7 +35,11 @@ const AddProjectForm = ({ categoryForm, id }: Props) => {
     };
 
     categoryForm == "add"
-      ? addProjects({ payload, toastSuccess: toast.success })
+      ? addProjects({
+          payload,
+
+          toastSuccess: toast.success,
+        })
       : updateProjects({ id, payload, toastSuccess: toast.success });
   };
 
@@ -101,8 +105,8 @@ const AddProjectForm = ({ categoryForm, id }: Props) => {
 };
 
 const FormContainer = styled.div`
-  width: 25%;
-  height: 400px;
+  width: 100%;
+  height: 100%;
   @media (max-width: 600px) {
     width: 95%;
   }
