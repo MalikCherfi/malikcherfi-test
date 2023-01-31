@@ -6,6 +6,10 @@ import { NavLink } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { toast } from "react-toastify";
+import { useAppSelector } from "../app/hooks";
+// Icon
+import { AiFillDelete } from "react-icons/ai";
+import { BsFillPencilFill } from "react-icons/bs";
 
 type Props = {
   id: string;
@@ -24,6 +28,8 @@ const ProjectsTable = ({
   beginningDate,
   endDate,
 }: Props) => {
+  const textColor = useAppSelector((state) => state.color.textColor);
+
   const [show, setShow] = useState({ status: false, form: "", id: id });
 
   const handleClose = () => setShow({ status: false, form: "", id: id });
@@ -52,19 +58,34 @@ const ProjectsTable = ({
             <td>{endDate}</td>
             <td>
               {" "}
-              <Button variant="primary" onClick={handleShow}>
-                Modifier
+              <Button
+                style={{
+                  backgroundColor: textColor,
+                  border: "none",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                onClick={handleShow}
+              >
+                <BsFillPencilFill />
               </Button>
             </td>
             <td>
               {" "}
               <Button
-                variant="primary"
+                style={{
+                  backgroundColor: textColor,
+                  border: "none",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
                 onClick={() => {
                   deleteProjects({ id, toastSuccess: toast.success });
                 }}
               >
-                Supprimer
+                <AiFillDelete />
               </Button>
             </td>
           </tr>
