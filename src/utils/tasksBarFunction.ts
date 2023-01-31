@@ -2,8 +2,6 @@
 
 const setTasksBar = (tasks: any) => {
   const tasksDate: any = {};
-  let beginningDate;
-  let endDate;
 
   let date1: any = [];
   let date2: any = [];
@@ -18,10 +16,8 @@ const setTasksBar = (tasks: any) => {
 
   tasks.map((task: any) => {
     return (
-      (beginningDate = new Date(task.beginningDate)),
-      (endDate = new Date(task.endDate)),
-      (tasksDate[task._id] = [beginningDate.toISOString().slice(0, 10)]),
-      tasksDate[task._id].push(endDate.toISOString().slice(0, 10))
+      (tasksDate[task._id] = [task.beginningDate]),
+      tasksDate[task._id].push(task.endDate)
     );
   });
 
