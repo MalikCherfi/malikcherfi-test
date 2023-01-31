@@ -1,6 +1,6 @@
 let calendar: any = {};
 
-for (let year = 2023; year <= 2100; year++) {
+for (let year = 2023; year <= 2026; year++) {
   calendar[year] = {
     January: 31,
     February: 32 - new Date(year, 1, 32).getDate(),
