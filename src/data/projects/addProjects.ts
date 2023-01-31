@@ -5,8 +5,8 @@ type Props = {
   toastSuccess: Function;
 };
 
-const addProjects = async ({payload, toastSuccess}: Props) => {
- return await axios
+const addProjects = async ({ payload, toastSuccess }: Props) => {
+  return await axios
     .post("/project", payload)
     .then(() => {
       return toastSuccess("Projet ajouté avec succès");
